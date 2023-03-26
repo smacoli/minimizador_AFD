@@ -9,7 +9,7 @@ with open('E:/Users/User/Desktop/AFD_minimizador/arquivoEntrada.txt') as arquivo
     linhas = []
     for linha in automato:
         linhas.append(linha)
-    
+
     estados_do_automato = linhas[0]
     alfabeto = linhas[1]
     estado_inicial = linhas[len(linhas) - 2]
@@ -22,9 +22,8 @@ with open('E:/Users/User/Desktop/AFD_minimizador/arquivoEntrada.txt') as arquivo
         novo_estado = e.replace('*', '')
         estados_finais.append(novo_estado)
 
-    
     estados_nao_finais = []
-    for estado in estados_do_automato: 
+    for estado in estados_do_automato:
         if estado not in estados_finais:
             estados_nao_finais.append(estado)
 
@@ -34,7 +33,7 @@ with open('E:/Users/User/Desktop/AFD_minimizador/arquivoEntrada.txt') as arquivo
     print("Estados finais: ", estados_finais)
     # print("Trasicoes: ", transicoes)
     print("Estados nao finais: ", estados_nao_finais)
-    
+
     # # Inicialização da tabela de transição
     # tabela_transicao = {}
 
@@ -51,4 +50,3 @@ with open('E:/Users/User/Desktop/AFD_minimizador/arquivoEntrada.txt') as arquivo
     # for (origem, simbolo), destino in tabela_transicao.items():
     #     print(f"| {origem:<6} | {simbolo:<7} | {destino:<7} |")
     # print("---------------------")
-
