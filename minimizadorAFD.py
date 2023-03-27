@@ -61,9 +61,9 @@ for (origem, simbolo), destino in tabela_transicao.items():
     destino_minimo = estados_equivalentes[destino]
     tabela_transicao_minimo[(origem_minimo, simbolo)] = destino_minimo
         
-print("\n \n \nAFD minimizado: ")
-print("___________________")
-print("| Estado | Simbolo | Destino |")
-print("___________________")
-for(origem_minimo, simbolo), destino_minimo in tabela_transicao_minimo.items():
-    print(f"| {origem_minimo:<6} | {simbolo:<7} | {destino_minimo:<7} |
+# print("\n \n \nAFD minimizado: ")
+# print("___________________")
+# print("| Estado | Simbolo | Destino |")
+# print("___________________")
+# for(origem_minimo, simbolo), destino_minimo in tabela_transicao_minimo.items():
+#     print(f"| {origem_minimo:<6} | {simbolo:<7} | {destino_minimo:<7} |

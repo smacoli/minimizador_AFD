@@ -1,7 +1,7 @@
 import csv
 
 # Abre o arquivo
-with open('E:/Users/User/Desktop/AFD_minimizador/arquivoEntrada.txt') as arquivo:
+with open('arquivoEntrada.txt') as arquivo:
     # Cria um objeto para ler o arquivo como um arquivo CSV
     automato = csv.reader(arquivo, delimiter=',')
 
@@ -27,20 +27,20 @@ with open('E:/Users/User/Desktop/AFD_minimizador/arquivoEntrada.txt') as arquivo
         if estado not in estados_finais:
             estados_nao_finais.append(estado)
 
-    # print("Estados: ", estados_do_automato)
-    # print("Alfabeto: ", alfabeto)
-    # print("Estado inicial: ", estado_inicial)
+    print("Estados: ", estados_do_automato)
+    print("Alfabeto: ", alfabeto)
+    print("Estado inicial: ", estado_inicial)
     print("Estados finais: ", estados_finais)
-    # print("Trasicoes: ", transicoes)
+    print("Trasicoes: ", transicoes)
     print("Estados nao finais: ", estados_nao_finais)
 
     # # Inicialização da tabela de transição
-    # tabela_transicao = {}
+    tabela_transicao = {}
 
     # # Processamento da entrada para montar a tabela
-    # for linha in transicoes:
-    #     origem, simbolo, destino = linha
-    #     tabela_transicao[(origem, simbolo)] = destino
+    for linha in transicoes:
+        origem, simbolo, destino = linha
+        tabela_transicao[(origem, simbolo)] = destino
 
     # # Impressão da tabela de transição
     # print("AFD de entrada:")
@@ -50,3 +50,42 @@ with open('E:/Users/User/Desktop/AFD_minimizador/arquivoEntrada.txt') as arquivo
     # for (origem, simbolo), destino in tabela_transicao.items():
     #     print(f"| {origem:<6} | {simbolo:<7} | {destino:<7} |")
     # print("---------------------")
+
+# Função que verifica se um autômato é um AFD
+
+
+def verifica_afd(estados_do_automato, alfabeto, transicoes, estado_inicial, estados_finais):
+    # Verifica se cada estado possui transição para cada símbolo do alfabeto
+    for estado in estados_do_automato:
+        for simbolo in alfabeto:
+            if (estado, simbolo) not in transicoes:
+                return False
+
+    # Verifica se não existem transições vazias (sem símbolo do alfabeto)
+    for origem, simbolo in transicoes.keys():
+        if simbolo == "":
+            return False
+
+    # Verifica se há apenas um estado inicial
+    if len(estado_inicial) != 1:
+        return False
+
+    # Verifica se todos os estados_do_automato finais são distintos
+    if len(estados_finais) != len(set(estados_finais)):
+        return False
+
+    # Verifica se cada estado possui apenas uma transição para cada símbolo do alfabeto
+    for estado in estados_do_automato:
+        transicoes_estado = [simbolo for origem,
+                             simbolo in transicoes.keys() if origem == estado]
+        if len(transicoes_estado) != len(set(transicoes_estado)):
+            return False
+
+    # Se todas as verificações passaram, o autômato é um AFD
+    return True
+
+
+if verifica_afd(estados_do_automato, alfabeto, transicoes, estado_inicial, estados_finais):
+    print("O autômato não é um AFD")
+else:
+    print("O autômato é um AFD")
