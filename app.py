@@ -1,7 +1,7 @@
 import csv
 
 # Abre o arquivo
-with open('arquivoEntrada.txt') as arquivo:
+with open('arquivoEntradaAFD.txt') as arquivo:
     # Cria um objeto para ler o arquivo como um arquivo CSV
     automato = csv.reader(arquivo, delimiter=',')
 
@@ -52,8 +52,6 @@ with open('arquivoEntrada.txt') as arquivo:
     # print("---------------------")
 
 # Função que verifica se um autômato é um AFD
-
-
 def verifica_afd(estados_do_automato, alfabeto, transicoes, estado_inicial, estados_finais):
     # Verifica se cada estado possui transição para cada símbolo do alfabeto
     for estado in estados_do_automato:
@@ -77,7 +75,7 @@ def verifica_afd(estados_do_automato, alfabeto, transicoes, estado_inicial, esta
     # Verifica se cada estado possui apenas uma transição para cada símbolo do alfabeto
     for estado in estados_do_automato:
         transicoes_estado = [simbolo for origem,
-                             simbolo in transicoes.keys() if origem == estado]
+                            simbolo in transicoes.keys() if origem == estado]
         if len(transicoes_estado) != len(set(transicoes_estado)):
             return False
 
@@ -86,6 +84,8 @@ def verifica_afd(estados_do_automato, alfabeto, transicoes, estado_inicial, esta
 
 
 if verifica_afd(estados_do_automato, alfabeto, transicoes, estado_inicial, estados_finais):
-    print("O autômato não é um AFD")
+    print("O automato não eh um AFD")
 else:
-    print("O autômato é um AFD")
+    print("O automato eh um AFD")
+    
+
