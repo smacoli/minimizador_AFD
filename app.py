@@ -16,6 +16,10 @@ with open('arquivoEntradaAFD.txt') as arquivo:
     estados_finais_ast = linhas[len(linhas) - 1]
     transicoes = linhas[2:len(linhas) - 2]
 
+    for linha in transicoes:
+        origem, simbolo, destino = linha.strip().split(',')
+        transicoes[origem][simbolo] = destino
+        
     # Remove * da lista de estados finais
     estados_finais = []
     for e in estados_finais_ast:
@@ -87,5 +91,5 @@ if verifica_afd(estados_do_automato, alfabeto, transicoes, estado_inicial, estad
     print("O automato não eh um AFD")
 else:
     print("O automato eh um AFD")
-    
+    estados_aceitos = set.(estados_do_automato)
 
