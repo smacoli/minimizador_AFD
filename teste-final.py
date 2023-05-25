@@ -98,6 +98,7 @@ with open('automato2.dat') as arquivo:
 
   # Fazendo as comparações par a par pegando o estado destino de cada transição e compara com o estado destino das outras transições e com estados finais, 
   # quando uma transição leva ao estado final e a outra não leva, as tuplas são armazenadas na lista de estados não equivalentes
+  # Comparação com estados finais que inicialmente são automaticamente equivalentes (final = final)
   equivalentes_finais_1 = []
   nao_equivalentes_finais = []
   for i in range(len(trans_equivalente_final)):
@@ -128,6 +129,7 @@ with open('automato2.dat') as arquivo:
           equivalentes_1f.append(transicao)
   #print("EQUIVALENTES FINAL: ", equivalentes_1f)
 
+  # Comparação com estados não finais que inicialmente são automaticamente equivalentes (não final = não final)
   equivalentes_nf1 = []
   nao_equivalentes_nf1 = []
   for i in range(len(trans_equivalente_nao_final)):
